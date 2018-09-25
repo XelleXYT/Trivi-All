@@ -31,6 +31,15 @@ and open the template in the editor.
                 <div class="col-6" style="border:1px solid black;">
                     <br/>
                     <form action="preguntas.php">
+                         <!-- 
+                            Colores:
+                             Fondo:     #5592FF
+                             Filosofia: #AE3ADB
+                             Inglés:    #7DFF00
+                             Economía:  #FF0000
+                             Historia:  #EDE200
+                             Lengua:    #FF8600
+                          -->
                         <button id="buttonFilosofia" class="btn btn-primary btn-block" type="submit">Filosofia</button><br/>
                         <button id="buttonIngles" class="btn btn-primary btn-block" type="submit">Inglés</button><br/>
                         <button id="buttonEconomia" class="btn btn-primary btn-block" type="submit">Economía</button><br/>
