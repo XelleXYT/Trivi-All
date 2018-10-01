@@ -21,7 +21,7 @@ and open the template in the editor.
             <div class="row" style="border:1px solid black;">
                 <div class="col-10" style="border:1px solid black;"></div>
                 <div class="col-2" style="border:1px solid black;">
-                    <form action="login.php">
+                    <form action="VentanaLogin.php">
                         <br/>
                         <button id="button1" class="btn btn-primary btn-block" type="submit">Login</button><br/>
                     </form>
