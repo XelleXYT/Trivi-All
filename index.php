@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
+index de proyecto TRIVI-ALL
 -->
 <html>
     <head>
@@ -12,7 +10,7 @@ and open the template in the editor.
         <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
-        <div class="container">
+        <div class="container" id="principal">
             <div class="row" style="border:1px solid black; background-color: blue; color: white; height: 15vw">
                 <div class="col-12 text-center">
                     <h2 class="text-center">Encabezado y logo</h2>
@@ -21,10 +19,9 @@ and open the template in the editor.
             <div class="row" style="border:1px solid black;">
                 <div class="col-10" style="border:1px solid black;"></div>
                 <div class="col-2" style="border:1px solid black;">
-                    <form action="VentanaLogin.php">
-                        <br/>
+                    
                         <button id="button1" class="btn btn-primary btn-block" type="submit">Login</button><br/>
-                    </form>
+                    
                 </div>
             </div>
             <div class="row">
@@ -60,4 +57,15 @@ and open the template in the editor.
         ?>
     </body>
     <script src="js/jquery-3.3.1.min.js" type="text/javascript"></script>
+    
+    <script>
+        
+        $('#button1').click(function(){
+            
+            $('#principal').load("VentanaLogin.php");
+            
+        });
+        
+     
+    </script>
 </html>

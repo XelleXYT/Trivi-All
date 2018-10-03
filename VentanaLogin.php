@@ -1,13 +1,5 @@
 
-<html>
-    <head>
-        <meta charset="UTF-8">
-        
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-        
-        <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-    </head>
-    <body>
+
         <div class="container" id="principal">
             <div class="row">
                 <div class="col-12">
@@ -30,32 +22,27 @@
             </div>      
         </div>
        
-    </body>
-    <!-- Cargamos los Scripts. -->
-    <script src="js/jquery-3.3.1.min.js" type="text/javascript"></script>
-    
-    <script>
-    
-    
-    </script>
-    
-    
-</html>
+<script>
+        
+        
+        $('#boton1').click(function(){
+                //Vamos a leer el contenido de la caja y guardarlo en una variable.
+                var _cajanombre=$('#cajanombre').val(); 
+
+                var _cajapassword=$('#cajapassword').val(); 
+                
+                //Cargamos el archivo que vamos a leer para hacer la comprobación.
+                $('#principal').load("userlogin.php",{
+                    cajanombre : _cajanombre, 
+                    cajapassword : _cajapassword,
+                });
+                
+            });
 
 
-
-
-
-
-
-
-
+</script>
 
 <?php
 
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 ?>
