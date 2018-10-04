@@ -31,7 +31,6 @@ $resultadoQuery = $mysqli->query("SELECT * FROM usuarios WHERE nombreUsuario='$c
 $numUsuarios = $resultadoQuery->num_rows; //Comprobamos el nº resultados que obtenemos.
 
 if ($numUsuarios > 0) {
-
     require 'index.php';
 } else {
     require 'error.php';

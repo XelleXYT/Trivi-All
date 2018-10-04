@@ -1,11 +1,13 @@
 
 <h1>NO SE HA PODIDO ENTRAR</h1>
+<h6>Será redirigido en 1 segundo...</h6>
 
+<script>
+    
+    setTimeout(function (){ window.location.href = "index.php";},"1000");
+   
+</script>
 <?php
 
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+?>
 

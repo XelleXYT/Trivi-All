@@ -19,8 +19,10 @@ index de proyecto TRIVI-ALL
             <div class="row" style="border:1px solid black;">
                 <div class="col-10" style="border:1px solid black;"></div>
                 <div class="col-2" style="border:1px solid black;">
-                    
-                        <button id="button1" class="btn btn-primary btn-block" type="submit">Login</button><br/>
+                        <br/>
+                        <button id="buttonLogin" class="btn btn-primary btn-block" type="submit">Login</button>
+                        <button id="buttonProfile" class="btn btn-primary btn-block" type="submit">Perfil</button>
+                        <br/>
                     
                 </div>
             </div>
@@ -60,12 +62,20 @@ index de proyecto TRIVI-ALL
     
     <script>
         
-        $('#button1').click(function(){
+        $('#buttonProfile').hide();
+        
+        $('#buttonLogin').click(function(){
             
             $('#principal').load("VentanaLogin.php");
             
         });
         
+        var sesion; // Declaracion de variable la cual recibirá un valor en VentanaLogin.php
+        
+        if(sesion){
+             $('#buttonLogin').remove();
+             $('#buttonProfile').show();
+        }
      
     </script>
 </html>
