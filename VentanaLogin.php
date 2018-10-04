@@ -34,7 +34,7 @@
                 //Cargamos el archivo que vamos a leer para hacer la comprobación.
                 $('#principal').load("userlogin.php",{
                     cajanombre : _cajanombre, 
-                    cajapassword : _cajapassword,
+                    cajapassword : _cajapassword
                 });
                 
             });
