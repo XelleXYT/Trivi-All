@@ -1,5 +1,7 @@
 <?php
 
+session_start(); // Inicia o continua la sesión del navegador en el servidor PHP
+
 include('funciones.php');
 
 function limpiaPalabra($palabra) {
@@ -31,6 +33,15 @@ $resultadoQuery = $mysqli->query("SELECT * FROM usuarios WHERE nombreUsuario='$c
 $numUsuarios = $resultadoQuery->num_rows; //Comprobamos el nº resultados que obtenemos.
 
 if ($numUsuarios > 0) {
+
+    $r = $resultadoQuery->fetch_array();
+
+    // Guarda el nombre de usuario en la variable de sesión nombreUsuario.
+    $_SESSION['nombreUsuario'] = $cajanombre;
+
+    // Guarda el idUsuario de la base de datos en la variable de sesión idUsuario.
+    $_SESSION['idUsuario'] = $r['idUsuario'];
+
     require 'index.php';
 } else {
     require 'error.php';

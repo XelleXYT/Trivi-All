@@ -9,8 +9,8 @@ index de proyecto TRIVI-ALL
         <title>Trivi-All</title>
         <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
     </head>
-    <body>
-        <div class="container" id="principal">
+    <body style="background-color: #E4EDFF">
+        <div class="container" id="principal" style="background-color: #5591FF">
             <div class="row" style="border:1px solid black; background-color: blue; color: white; height: 15vw">
                 <div class="col-12 text-center">
                     <h2 class="text-center">Encabezado y logo</h2>
@@ -19,33 +19,31 @@ index de proyecto TRIVI-ALL
             <div class="row" style="border:1px solid black;">
                 <div class="col-10" style="border:1px solid black;"></div>
                 <div class="col-2" style="border:1px solid black;">
-                        <br/>
-                        <button id="buttonLogin" class="btn btn-primary btn-block" type="submit">Login</button>
-                        <button id="buttonProfile" class="btn btn-primary btn-block" type="submit">Perfil</button>
-                        <br/>
-                    
+                    <br/>
+                    <button id="buttonLogin" class="btn btn-primary btn-block" type="submit">Login</button>
+                    <button id="buttonProfile" class="btn btn-primary btn-block" type="submit"><?php echo $_SESSION['nombreUsuario'] ?></button>
+                    <br/>
+
                 </div>
             </div>
             <div class="row">
                 <div class="col-3" style="border:1px solid black;"></div>
-                <div class="col-6" style="border:1px solid black;">
+                <div class="col-6" style="border:1px solid black; color: #000;" id="menu">
                     <br/>
-                    <form action="preguntas.php">
-                         <!-- 
-                            Colores:
-                             Fondo:     #5592FF
-                             Filosofia: #AE3ADB
-                             Inglés:    #7DFF00
-                             Economía:  #FF0000
-                             Historia:  #EDE200
-                             Lengua:    #FF8600
-                          -->
-                        <button id="buttonFilosofia" class="btn btn-primary btn-block" type="submit">Filosofia</button><br/>
-                        <button id="buttonIngles" class="btn btn-primary btn-block" type="submit">Inglés</button><br/>
-                        <button id="buttonEconomia" class="btn btn-primary btn-block" type="submit">Economía</button><br/>
-                        <button id="buttonLengua" class="btn btn-primary btn-block" type="submit">Lengua</button><br/>
-                        <button id="buttonHistoria" class="btn btn-primary btn-block" type="submit">Historia</button><br/>
-                    </form>
+                    <!-- 
+                       Colores:
+                        Fondo:     #5592FF
+                        Filosofia: #AE3ADB
+                        Inglés:    #7DFF00
+                        Economía:  #FF0000
+                        Historia:  #EDE200
+                        Lengua:    #FF8600
+                    -->
+                    <p><a id="buttonFilosofia" class="btn btn-block" style="background-color: #B84EFF;"onclick="sigue('1')">Filosofía</a></p>
+                    <p><a id="buttonIngles" class="btn btn-block" style="background-color: #43FF43" onclick="sigue('2')">Inglés</a></p>
+                    <p><a id="buttonEconomia" class="btn btn-block" style="background-color: #FF4343" onclick="sigue('3')">Economía</a></p>
+                    <p><a id="buttonLengua" class="btn btn-block" style="background-color: #FFFF43" onclick="sigue('4')">Lengua</a></p>
+                    <p><a id="buttonHistoria" class="btn btn-block" style="background-color: #FF9843" onclick="sigue('5')">Historia</a></p>
                 </div>
                 <div class="col-3" style="border:1px solid black;"></div>
             </div>
@@ -59,23 +57,48 @@ index de proyecto TRIVI-ALL
         ?>
     </body>
     <script src="js/jquery-3.3.1.min.js" type="text/javascript"></script>
-    
+
     <script>
-        
-        $('#buttonProfile').hide();
-        
-        $('#buttonLogin').click(function(){
-            
-            $('#principal').load("VentanaLogin.php");
-            
-        });
-        
-        var sesion; // Declaracion de variable la cual recibirá un valor en VentanaLogin.php
-        
-        if(sesion){
-             $('#buttonLogin').remove();
-             $('#buttonProfile').show();
+                        $('#buttonProfile').hide();
+
+                        $('#buttonLogin').click(function () {
+
+                            $('#principal').load("VentanaLogin.php");
+
+                        });
+
+                        var sesion; // Declaracion de variable la cual recibirá un valor en VentanaLogin.php
+
+                        if (sesion) {
+                            $('#buttonLogin').remove();
+                            $('#buttonProfile').show();
+                        }
+
+    </script>
+    <script>
+
+        var _vidas = 3;
+        var _correctas = 0;
+
+        function sigue(_tema) {
+            switch (_tema) {
+                case '1':
+                    $("#menu").load("juego.php", {vidas: _vidas, correctas: _correctas, tema: "Filosofia"});
+                    break;
+                case '2':
+                    $("#menu").load("juego.php", {vidas: _vidas, correctas: _correctas, tema: "Ingles"});
+                    break;
+                case '3':
+                    $("#menu").load("juego.php", {vidas: _vidas, correctas: _correctas, tema: "Economia"});
+                    break;
+                case '4':
+                    $("#menu").load("juego.php", {vidas: _vidas, correctas: _correctas, tema: "Lengua"});
+                    break;
+                case '5':
+                    $("#menu").load("juego.php", {vidas: _vidas, correctas: _correctas, tema: "Historia"});
+                    break;
+            }
         }
-     
+
     </script>
 </html>
