@@ -32,7 +32,7 @@
         var _cajapassword = $('#cajapassword').val();
 
         //Cargamos el archivo que vamos a leer para hacer la comprobación.
-        $('#principal').load("userlogin.php", {
+        $('body').load("userlogin.php", {
             cajanombre: _cajanombre,
             cajapassword: _cajapassword
         });
