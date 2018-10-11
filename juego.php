@@ -1,5 +1,4 @@
 <?php
-
 session_start(); // Inicia o continua la sesión del navegador en el servidor PHP
 
 include ('funciones.php');
@@ -30,7 +29,6 @@ $preguntaActual = rand(0, $numPreguntas - 1);
 ?>
 
 <div>
-    <p><a class="btn btn-block btn-dark disabled"><b>TRIVI-ALL - <?php echo $tema; ?></b></a></p>
     <p><a id="enunciado" class=""></a></p>
     <p><a id="r1" class="btn btn-block btn-primary"></a></p>
     <p><a id="r2" class="btn btn-block btn-primary"></a></p>
@@ -42,33 +40,37 @@ $preguntaActual = rand(0, $numPreguntas - 1);
 
 <script>
     function volver() {
-        $('#principal').load("app.php");
+        $('body').load("index.php");
     }
 
     var listaPreguntas = <?php echo json_encode($listaPreguntas); ?>;
     var numeroPregunta = Math.floor(Math.random() * listaPreguntas.length);
+    var contador = 0;
     sigue();
     // console.log(listaPreguntas[numeroPregunta]);
 
     function sigue() {
-        numeroPregunta = Math.floor(Math.random() * listaPreguntas.length);
-        $('#enunciado').text(listaPreguntas[numeroPregunta][1]);
-        $('#r1').text(listaPreguntas[numeroPregunta][2]).click(function () {
-            sigue();
-            stopImmediatePropagation();
-        });
-        $('#r2').text(listaPreguntas[numeroPregunta][3]).click(function () {
-            sigue();
-            stopImmediatePropagation();
-        });
-        $('#r3').text(listaPreguntas[numeroPregunta][4]).click(function () {
-            sigue();
-            stopImmediatePropagation();
-        });
-        $('#r4').text(listaPreguntas[numeroPregunta][5]).click(function () {
-            sigue();
-            stopImmediatePropagation();
-        });
+        if (contador < 10) {
+            numeroPregunta = Math.floor(Math.random() * listaPreguntas.length);
+            $('#enunciado').text(listaPreguntas[numeroPregunta][1]);
+            $('#r1').text(listaPreguntas[numeroPregunta][2]).click(function () {
+                sigue();
+                stopImmediatePropagation();
+            });
+            $('#r2').text(listaPreguntas[numeroPregunta][3]).click(function () {
+                sigue();
+                stopImmediatePropagation();
+            });
+            $('#r3').text(listaPreguntas[numeroPregunta][4]).click(function () {
+                sigue();
+                stopImmediatePropagation();
+            });
+            $('#r4').text(listaPreguntas[numeroPregunta][5]).click(function () {
+                sigue();
+                stopImmediatePropagation();
+            });
+            contador++;
+        }
     }
 
 </script>
