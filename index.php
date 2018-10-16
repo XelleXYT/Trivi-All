@@ -22,7 +22,10 @@ if (session_status() == PHP_SESSION_NONE) {
                 </div>
             </div>
             <div class="row" style="border:1px solid black;">
-                <div class="col-10" style="border:1px solid black;"></div>
+                <div class="col-8" style="border:1px solid black;"></div>
+                <div class="col-2" style="border:1px solid black;">
+                    <button id="buttonRegistro" class="btn btn-primary btn-block" type="submit">Registro</button>
+                </div>
                 <div class="col-2" style="border:1px solid black;">
                     <br/>
                     <button id="buttonLogin" class="btn btn-primary btn-block" type="submit">Login</button>
@@ -70,6 +73,10 @@ if (session_status() == PHP_SESSION_NONE) {
 
                             $('#principal').load("VentanaLogin.php");
 
+                        });
+                        
+                        $('#buttonRegistro').click(function(){
+                           $('#principal').load("NewUser.php"); 
                         });
 
                         var sesion; // Declaracion de variable la cual recibirá un valor en VentanaLogin.php
