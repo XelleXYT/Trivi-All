@@ -4,8 +4,25 @@ include('funciones.php');
 
 $mysqli=conectaBBDD();
 
-$cajanombre=$_POST['cajanombre'];
-$cajapassword=$_POST['cajapassword'];
+function limpiaPalabra($palabra) {
+    $palabra = trim($palabra, "'");
+    $palabra = trim($palabra, " ");
+    $palabra = trim($palabra, "-");
+    $palabra = trim($palabra, "`");
+    $palabra = trim($palabra, "´");
+    $palabra = trim($palabra, '"');
+    $palabra = trim($palabra, "(");
+    $palabra = trim($palabra, ")");
+    $palabra = trim($palabra, "&");
+    $palabra = trim($palabra, ";");
+    $palabra = trim($palabra, "<");
+    $palabra = trim($palabra, ">");
+
+    return $palabra;
+}
+
+$cajanombre = limpiaPalabra($_POST['cajanombre']);
+$cajapassword = limpiaPalabra($_POST['cajapassword']);
 
 echo $cajanombre;
 echo $cajapassword;
