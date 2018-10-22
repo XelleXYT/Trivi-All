@@ -24,7 +24,9 @@ if (session_status() == PHP_SESSION_NONE) {
             <div class="row" style="border:1px solid black;">
                 <div class="col-8" style="border:1px solid black;"></div>
                 <div class="col-2" style="border:1px solid black;">
+                    <br/>
                     <button id="buttonRegistro" class="btn btn-primary btn-block" type="submit">Registro</button>
+                    <br/>
                 </div>
                 <div class="col-2" style="border:1px solid black;">
                     <br/>
