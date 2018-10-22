@@ -38,7 +38,7 @@ if (session_status() == PHP_SESSION_NONE) {
             </div>
             <div class="row">
                 <div class="col-3" style="border:1px solid black;"></div>
-                <div class="col-6" style="border:1px solid black; color: #000;" id="menu">
+                <div class="col-md-6" style="border:1px solid black; color: #000;" id="menu">
                     <br/>
                     <!-- 
                        Colores:
