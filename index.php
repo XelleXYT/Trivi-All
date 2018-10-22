@@ -86,6 +86,7 @@ if (session_status() == PHP_SESSION_NONE) {
 
                         if (sesion) {
                             $('#buttonLogin').remove();
+                            $('#buttonRegistro').remove();
                             $('#buttonProfile').show();
                         }
 
