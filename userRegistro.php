@@ -27,7 +27,11 @@ $cajapassword = limpiaPalabra($_POST['cajapassword']);
 echo $cajanombre;
 echo $cajapassword;
 
-$resultadoQuery = $mysqli->query("INSERT INTO usuarios(nombreUsuario,userPass) VALUES ('$cajanombre','$cajapassword')");
+$passEncriptada= password_hash($cajapassword, PASSWORD_BCRYPT);
+
+echo $passEncriptada;
+
+$resultadoQuery = $mysqli->query("INSERT INTO usuarios(nombreUsuario,userPass) VALUES ('$cajanombre','$passEncriptada')");
 
 ?>
 
