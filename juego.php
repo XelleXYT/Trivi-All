@@ -5,10 +5,11 @@ include ('funciones.php');
 
 $vidas = $_POST['vidas'];
 $correctas = $_POST['correctas'];
-$tema = $_POST['tema'];
+$tema = $_SESSION['tema'];
+$dificultad = $_POST['dificultad'];
 
 $mysqli = conectaBBDD();
-$resultadoQuery = $mysqli->query("SELECT * FROM preguntas WHERE tema = '$tema' ORDER BY numero");
+$resultadoQuery = $mysqli->query("SELECT * FROM preguntas WHERE tema = '$tema' AND nivel = $dificultad ORDER BY numero");
 $numPreguntas = $resultadoQuery->num_rows;
 
 

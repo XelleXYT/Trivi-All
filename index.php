@@ -93,25 +93,22 @@ if (session_status() == PHP_SESSION_NONE) {
     </script>
     <script>
 
-        var _vidas = 3;
-        var _correctas = 0;
-
-        function sigue(_tema) {
-            switch (_tema) {
+        function sigue(_subtema) {
+            switch (_subtema) {
                 case '1':
-                    $("#menu").load("juego.php", {vidas: _vidas, correctas: _correctas, tema: "Filosofia"});
+                    $("#menu").load("niveles.php", {tema: "Filosofia"});
                     break;
                 case '2':
-                    $("#menu").load("juego.php", {vidas: _vidas, correctas: _correctas, tema: "Ingles"});
+                    $("#menu").load("niveles.php", {tema: "Ingles"});
                     break;
                 case '3':
-                    $("#menu").load("juego.php", {vidas: _vidas, correctas: _correctas, tema: "Economia"});
+                    $("#menu").load("niveles.php", {tema: "Economia"});
                     break;
                 case '4':
-                    $("#menu").load("juego.php", {vidas: _vidas, correctas: _correctas, tema: "Lengua"});
+                    $("#menu").load("niveles.php", {tema: "Lengua"});
                     break;
                 case '5':
-                    $("#menu").load("juego.php", {vidas: _vidas, correctas: _correctas, tema: "Historia"});
+                    $("#menu").load("niveles.php", {tema: "Historia"});
                     break;
             }
         }
