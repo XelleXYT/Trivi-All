@@ -77,9 +77,9 @@ if (session_status() == PHP_SESSION_NONE) {
                             $('#principal').load("VentanaLogin.php");
 
                         });
-                        
-                        $('#buttonRegistro').click(function(){
-                           $('#principal').load("NewUser.php"); 
+
+                        $('#buttonRegistro').click(function () {
+                            $('#principal').load("NewUser.php");
                         });
 
                         var sesion; // Declaracion de variable la cual recibirá un valor en VentanaLogin.php
