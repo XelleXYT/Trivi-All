@@ -67,7 +67,7 @@ if (session_status() == PHP_SESSION_NONE) {
         ?>
     </body>
     <script src="js/jquery-3.3.1.min.js" type="text/javascript"></script>
-    <script src="../InicioSesion/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="js/bootstrap.min.js" type="text/javascript"></script>
 
     <script>
                         $('#buttonProfile').hide();
