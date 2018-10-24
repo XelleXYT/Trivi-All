@@ -54,6 +54,11 @@ html {
   width: device-width;
 }
 
+@font-face {
+    font-family: mvBoli;
+    src: url(../fonts/mvboli.ttf);
+}
+
 article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
   display: block;
 }
