@@ -22,6 +22,27 @@
     </div>      
 </div>
 
+<!--modal, obtenido de la pg de bootstrap.-->
+
+<div id="myModal" class="modal" tabindex="-1" role="dialog" style="color:darkgray;">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Error</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Nombre de usuario o contraseña incorrectos.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script>
 
 
@@ -31,17 +52,24 @@
 
         var _cajapassword = $('#cajapassword').val();
 
+
         //Cargamos el archivo que vamos a leer para hacer la comprobación.
         $('body').load("userlogin.php", {
             cajanombre: _cajanombre,
-            cajapassword: _cajapassword
+            cajapassword: _cajapassword,
+
         });
 
         // Asigna valora la variable declarada en index.php (Por Marta)
         sesion = true;
 
-
     });
+    
+    function muestraModal() {
+        $('#myModal').modal('show');
+
+    }
+    ;
 
 
 </script>

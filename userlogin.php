@@ -25,6 +25,7 @@ $mysqli = conectaBBDD();
 
 $cajanombre = limpiaPalabra($_POST['cajanombre']);
 $cajapassword = limpiaPalabra($_POST['cajapassword']);
+
 //query
 
 $resultadoQuery = $mysqli->query("SELECT * FROM usuarios WHERE nombreUsuario='$cajanombre'");
@@ -44,10 +45,20 @@ if ($numUsuarios > 0) {
 
         require 'index.php';
     } else {
-        require 'error.php';
+        require 'VentanaLogin.php';
+        echo '<script type="text/javascript">',
+        'muestraModal();',
+        '</script>'
+        ;
+ 
     }
 } else {
-    require 'error.php';
+    require 'VentanaLogin.php';
+     echo '<script type="text/javascript">',
+     'muestraModal();',
+     '</script>'
+     ;
+        
 }
 ?>
 
