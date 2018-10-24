@@ -24,14 +24,16 @@ function limpiaPalabra($palabra) {
 $cajanombre = limpiaPalabra($_POST['cajanombre']);
 $cajapassword = limpiaPalabra($_POST['cajapassword']);
 
-echo $cajanombre;
-echo $cajapassword;
+//echo $cajanombre;
+//echo $cajapassword;
 
 $passEncriptada= password_hash($cajapassword, PASSWORD_BCRYPT);
 
-echo $passEncriptada;
+//echo $passEncriptada;
 
 $resultadoQuery = $mysqli->query("INSERT INTO usuarios(nombreUsuario,userPass) VALUES ('$cajanombre','$passEncriptada')");
+
+require 'error.php';
 
 ?>
 

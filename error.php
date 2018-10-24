@@ -1,5 +1,5 @@
 
-<h1>NO SE HA PODIDO ENTRAR</h1>
+<h1>EL REGISTRO SE HA HECHO CORRECTAMENTE</h1>
 <h6>Será redirigido en 1 segundo...</h6>
 
 <script>
