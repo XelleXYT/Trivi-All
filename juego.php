@@ -72,8 +72,8 @@ $preguntaActual = rand(0, $numPreguntas - 1);
     function rellenaDatos() {
         if (contador < 10 && vidas > 0) {
             numeroPregunta = Math.floor(Math.random() * listaPreguntas.length);
-            console.log(numeroPregunta);
-            console.log(arrayAuxiliar.includes(numeroPregunta));
+            //console.log(numeroPregunta);
+            //console.log(arrayAuxiliar.includes(numeroPregunta));
 
             if (!arrayAuxiliar.includes(numeroPregunta)) {
                 $('#enunciado').text(listaPreguntas[numeroPregunta][1]);
@@ -91,7 +91,7 @@ $preguntaActual = rand(0, $numPreguntas - 1);
 
             contador++;
             arrayAuxiliar.push(numeroPregunta);
-            console.log(arrayAuxiliar);
+            //console.log(arrayAuxiliar);
 
         }
     }
@@ -99,29 +99,99 @@ $preguntaActual = rand(0, $numPreguntas - 1);
     //La función ejecuta rellenaDatos, estableciendo un único click para que no sea redundante.
 
     function sigue() {
+        
 
         rellenaDatos();
+
         //Cuando se hace click sobre cualquiera de los botones;
         $(".botonRespuesta").click(function () {
             //console.log($(this).attr("value"));
 
             var valorDelBoton = $(this).attr("value");  //This es el último evento de click. Lee el valor del atributo "value".
             var valorDeRespuesta = $('#respuesta').text(); //Leemos el párrafo respuesta y obtenemos su valor.
+            
+            
+            
             if (contador < 10 && vidas > 0) {
                 if (valorDelBoton == valorDeRespuesta) { //En caso de que ambos valores sean iguales, suma uno a correctas y actualiza el texto.
                     correctas = correctas + 1;
                     $('#correctas').text(correctas);
-                    rellenaDatos(); //Se ejecuta de nuevo la función "rellenaDatos" de manera limpia y efectiva.
+                    colorBoton(valorDeRespuesta);
+                    setTimeout(function() {
+                          rellenaDatos(); //Se ejecuta de nuevo la función "rellenaDatos" de manera limpia y efectiva.
+                          restauraColor();
+                     }, "1000");
+ 
                 } else {
                     vidas = vidas - 1;
                     $('#lives').text(vidas);
-                    rellenaDatos();
+                    colorBoton(valorDeRespuesta);
+                    setTimeout(function() {
+                          rellenaDatos(); //Se ejecuta de nuevo la función "rellenaDatos" de manera limpia y efectiva.
+                          restauraColor();
+                     }, "1000");
                 }
             }
 
         });
 
     }
+    
+    function colorBoton(respuesta2){ 
+        var res1=$('#r1').attr("value");
+        var res2=$('#r2').attr("value");
+        var res3=$('#r3').attr("value");
+        var res4=$('#r4').attr("value");
+        
+        if(respuesta2==res1){
+            $('#r1').css('background-color','green');
+
+            $('#r2').css('background-color','red');
+
+            $('#r3').css('background-color','red');
+
+            $('#r4').css('background-color','red');
+            
+        }else if(respuesta2==res2){
+            $('#r1').css('background-color','red');
+
+            $('#r2').css('background-color','green');
+
+            $('#r3').css('background-color','red');
+
+            $('#r4').css('background-color','red');
+        }else if(respuesta2==res3){
+            $('#r1').css('background-color','red');
+
+            $('#r2').css('background-color','red');
+
+            $('#r3').css('background-color','green');
+
+            $('#r4').css('background-color','red');
+        }else if(respuesta2==res4){
+            $('#r1').css('background-color','red');
+
+            $('#r2').css('background-color','red');
+
+            $('#r3').css('background-color','red');
+
+            $('#r4').css('background-color','green');
+        }
+        
+    }
+    
+    function restauraColor(){
+        $('#r1').css('background-color','blue');
+
+        $('#r2').css('background-color','blue');
+
+        $('#r3').css('background-color','blue');
+
+        $('#r4').css('background-color','blue');
+    }
+    
+    
+
 
 
 
