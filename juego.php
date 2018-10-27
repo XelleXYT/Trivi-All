@@ -29,6 +29,10 @@ for ($i = 0; $i < $numPreguntas; $i++) {
 $preguntaActual = rand(0, $numPreguntas - 1);
 ?>
 
+<div id="myProgress">
+  <div id="myBar"></div>
+</div>
+
 <div>
     <p><a id="enunciado" class=""></a></p>
     <p><a id="respuesta" class="" style="display:none;"></a></p> <!--Vamos a guardar en una caja invisible el valor de la respuesta correcta-->
@@ -36,10 +40,8 @@ $preguntaActual = rand(0, $numPreguntas - 1);
     <p><a id="r2" class="botonRespuesta btn btn-block btn-primary" value="2"></a></p>
     <p><a id="r3" class="botonRespuesta btn btn-block btn-primary" value="3"></a></p>
     <p><a id="r4" class="botonRespuesta btn btn-block btn-primary" value="4"></a></p>
-
-
-
 </div>
+
 <div class="row">
     <div class="col-4">
         <p><a class="btn btn-primary disabled">Vidas <br/><span id="lives">3</span>/3</a></p>
@@ -105,6 +107,7 @@ $preguntaActual = rand(0, $numPreguntas - 1);
     var contador = 0;
     //Funciones.
     sigue();
+    move(); //Función de barra de progreso.
     
     // console.log(listaPreguntas[numeroPregunta]);
 
@@ -160,6 +163,7 @@ $preguntaActual = rand(0, $numPreguntas - 1);
                     setTimeout(function() {
                           rellenaDatos(); //Se ejecuta de nuevo la función "rellenaDatos" de manera limpia y efectiva.
                           restauraColor();
+                          move();
                      }, "1000");
  
                 } else {
@@ -169,6 +173,7 @@ $preguntaActual = rand(0, $numPreguntas - 1);
                     setTimeout(function() {
                           rellenaDatos(); //Se ejecuta de nuevo la función "rellenaDatos" de manera limpia y efectiva.
                           restauraColor();
+                          move(); //Función de barra de progreso.
                      }, "1000");
                 }
             }
@@ -251,11 +256,27 @@ $preguntaActual = rand(0, $numPreguntas - 1);
     }
     ;
     
-   
+    //Barra de progreso
+
+function move() {
+    var elem = document.getElementById("myBar"); 
+    var width = 1;
+    var id = setInterval(frame, 60);
+    function frame() {
+        if (width >= 100) {
+            if(contador <= 10 && vidas > 0){
+            clearInterval(id);
+            rellenaDatos();
+            restauraColor();
+            move();
+            }
+            
+        } else {
+            width++; 
+            elem.style.width = width + '%'; 
+        }
+    }
     
-
-
-
-
+}
 
 </script>
