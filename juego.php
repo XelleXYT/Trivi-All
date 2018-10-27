@@ -52,6 +52,44 @@ $preguntaActual = rand(0, $numPreguntas - 1);
     </div>
 </div>
 
+<div id="myModal" class="modal" tabindex="-1" role="dialog" style="color:darkgray;">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Error</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>¡Has Perdido!</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="volver();">Volver al Menú Principal</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="myModal2" class="modal" tabindex="-1" role="dialog" style="color:darkgray;">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Error</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>¡FELICIDADES! ¡Has Superado la Prueba! <br/> Respuestas Correctas; <span id="resCorrectas"></span></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="volver();">Volver al Menú Principal</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script>
     function volver() {
         $('body').load("index.php");
@@ -65,33 +103,36 @@ $preguntaActual = rand(0, $numPreguntas - 1);
     var vidas =<?php echo $vidas ?>;
 
     var contador = 0;
+    //Funciones.
     sigue();
+    
     // console.log(listaPreguntas[numeroPregunta]);
 
     //La función escribe los datos sobre los "labels".
     function rellenaDatos() {
-        if (contador < 10 && vidas > 0) {
+        if (contador <= 10 && vidas > 0) {
             numeroPregunta = Math.floor(Math.random() * listaPreguntas.length);
-            //console.log(numeroPregunta);
-            //console.log(arrayAuxiliar.includes(numeroPregunta));
+            console.log(numeroPregunta);
+            console.log(arrayAuxiliar.includes(numeroPregunta));
 
-            if (!arrayAuxiliar.includes(numeroPregunta)) {
+            while (arrayAuxiliar.includes(numeroPregunta)) {   
+                numeroPregunta = Math.floor(Math.random() * listaPreguntas.length);
+            } 
+            if(!arrayAuxiliar.includes(numeroPregunta)) {
                 $('#enunciado').text(listaPreguntas[numeroPregunta][1]);
                 $('#respuesta').text(listaPreguntas[numeroPregunta][6]);
-                $('#r1').text(listaPreguntas[numeroPregunta][2])
+                $('#r1').text(listaPreguntas[numeroPregunta][2]);
 
-                $('#r2').text(listaPreguntas[numeroPregunta][3])
+                $('#r2').text(listaPreguntas[numeroPregunta][3]);
 
-                $('#r3').text(listaPreguntas[numeroPregunta][4])
+                $('#r3').text(listaPreguntas[numeroPregunta][4]);
 
-                $('#r4').text(listaPreguntas[numeroPregunta][5])
-            } else {
-                numeroPregunta = Math.floor(Math.random() * listaPreguntas.length);
+                $('#r4').text(listaPreguntas[numeroPregunta][5]);
             }
 
             contador++;
             arrayAuxiliar.push(numeroPregunta);
-            //console.log(arrayAuxiliar);
+            console.log(arrayAuxiliar);
 
         }
     }
@@ -100,7 +141,6 @@ $preguntaActual = rand(0, $numPreguntas - 1);
 
     function sigue() {
         
-
         rellenaDatos();
 
         //Cuando se hace click sobre cualquiera de los botones;
@@ -112,7 +152,7 @@ $preguntaActual = rand(0, $numPreguntas - 1);
             
             
             
-            if (contador < 10 && vidas > 0) {
+            if (contador <= 10 && vidas > 0) {
                 if (valorDelBoton == valorDeRespuesta) { //En caso de que ambos valores sean iguales, suma uno a correctas y actualiza el texto.
                     correctas = correctas + 1;
                     $('#correctas').text(correctas);
@@ -132,11 +172,18 @@ $preguntaActual = rand(0, $numPreguntas - 1);
                      }, "1000");
                 }
             }
+            if(vidas<=0){
+              muestraModal();
+            }
+            if(contador==10){
+                $('#resCorrectas').text(correctas);
+                muestraModal2();
+            }
 
         });
 
     }
-    
+    //Colores de botones según la respuesta.
     function colorBoton(respuesta2){ 
         var res1=$('#r1').attr("value");
         var res2=$('#r2').attr("value");
@@ -190,6 +237,21 @@ $preguntaActual = rand(0, $numPreguntas - 1);
         $('#r4').css('background-color','blue');
     }
     
+    //Se muestra un modal cuando se pierde.
+    
+    function muestraModal() {
+        $('#myModal').modal('show');
+
+    }
+    ;
+    
+    function muestraModal2() {
+        $('#myModal2').modal('show');
+
+    }
+    ;
+    
+   
     
 
 
