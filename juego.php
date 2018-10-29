@@ -117,8 +117,8 @@ $preguntaActual = rand(0, $numPreguntas - 1);
     function rellenaDatos() {
         if (contador <= 10 && vidas > 0) {
             numeroPregunta = Math.floor(Math.random() * listaPreguntas.length);
-            console.log(numeroPregunta);
-            console.log(arrayAuxiliar.includes(numeroPregunta));
+            //console.log(numeroPregunta);
+            //console.log(arrayAuxiliar.includes(numeroPregunta));
 
             while (arrayAuxiliar.includes(numeroPregunta)) {
                 numeroPregunta = Math.floor(Math.random() * listaPreguntas.length);
@@ -137,7 +137,7 @@ $preguntaActual = rand(0, $numPreguntas - 1);
 
             contador++;
             arrayAuxiliar.push(numeroPregunta);
-            console.log(arrayAuxiliar);
+           // console.log(arrayAuxiliar);
 
         }
     }
@@ -162,7 +162,7 @@ $preguntaActual = rand(0, $numPreguntas - 1);
                     correctas++;
                     $('#correctas').text(correctas);
                     colorBoton(valorDeRespuesta);
-                    clearInterval(id);  //Limpia la barra de progreso.
+                    clearInterval(id);  //Limpia la barra de progreso.         
                     setTimeout(function () { //Delay.
                         rellenaDatos(); //Se ejecuta de nuevo la función "rellenaDatos" de manera limpia y efectiva.
                         restauraColor();
@@ -254,26 +254,26 @@ $preguntaActual = rand(0, $numPreguntas - 1);
         var width = 1;
         id = setInterval(frame, 120);
         function frame(ef) {
-            if (width >= 120) {
+            if (width >= 100) {
                 if (contador <= 10 && vidas > 0) {
                     clearInterval(id);
                     vidas--;
+                    $('#lives').text(vidas);
                     rellenaDatos();
                     restauraColor();
                     //em.stopImmediatePropagation();
                     move();
-
-                    $('#lives').text(vidas);
                 }
-
             } else {
                 if (vidas > 0) {
                     width++;
                     elem.style.width = width + '%';
                 } else if (vidas <= 0) {
                     muestraModal();
+                    clearInterval(id);
                 }
             }
+            console.log("ancho"+width);
         }
 
     }
