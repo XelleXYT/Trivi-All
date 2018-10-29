@@ -163,7 +163,7 @@ $preguntaActual = rand(0, $numPreguntas - 1);
                     $('#correctas').text(correctas);
                     colorBoton(valorDeRespuesta);
                     clearInterval(id);  //Limpia la barra de progreso.
-                    setTimeout(function() {
+                    setTimeout(function() { //Delay.
                           rellenaDatos(); //Se ejecuta de nuevo la función "rellenaDatos" de manera limpia y efectiva.
                           restauraColor();
                           move();
@@ -278,8 +278,10 @@ function move() {
             }
             
         } else {
+            if(vidas>0){
             width++; 
             elem.style.width = width + '%'; 
+           }
         }
     }
     
