@@ -17,7 +17,7 @@ if (session_status() == PHP_SESSION_NONE) {
     <body style="background-color: #E4EDFF">
         <div class="container" id="principal" style="background-color: #5591FF">
             <div class="row" style=" background-color: blue; color: white; height: 15vw">
-                <div class="col-12 text-center">
+                <div class="col-12 text-center" style="background-image: url('img/TriviallBanner.png'); background-repeat: no-repeat; background-size: 37vw; background-position:center;">
                     <h2 class="text-center">Encabezado y logo</h2>
                 </div>
             </div>
