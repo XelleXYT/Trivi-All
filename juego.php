@@ -30,7 +30,7 @@ $preguntaActual = rand(0, $numPreguntas - 1);
 ?>
 
 <div id="myProgress">
-  <div id="myBar"></div>
+    <div id="myBar"></div>
 </div>
 
 <div>
@@ -93,10 +93,6 @@ $preguntaActual = rand(0, $numPreguntas - 1);
 </div>
 
 <script>
-    function volver() {
-        $('body').load("index.php");
-    }
-
     var listaPreguntas = <?php echo json_encode($listaPreguntas); ?>;
     var numeroPregunta = Math.floor(Math.random() * listaPreguntas.length);
     var arrayAuxiliar = [numeroPregunta];
@@ -105,13 +101,17 @@ $preguntaActual = rand(0, $numPreguntas - 1);
     var vidas =<?php echo $vidas ?>;
 
     var contador = 0;
-    
+
     var id;
     //Funciones.
     sigue();
     move(); //Función de barra de progreso.
-    
+
     // console.log(listaPreguntas[numeroPregunta]);
+
+    function volver() {
+        $('body').load("index.php");
+    }
 
     //La función escribe los datos sobre los "labels".
     function rellenaDatos() {
@@ -120,10 +120,10 @@ $preguntaActual = rand(0, $numPreguntas - 1);
             console.log(numeroPregunta);
             console.log(arrayAuxiliar.includes(numeroPregunta));
 
-            while (arrayAuxiliar.includes(numeroPregunta)) {   
+            while (arrayAuxiliar.includes(numeroPregunta)) {
                 numeroPregunta = Math.floor(Math.random() * listaPreguntas.length);
-            } 
-            if(!arrayAuxiliar.includes(numeroPregunta)) {
+            }
+            if (!arrayAuxiliar.includes(numeroPregunta)) {
                 $('#enunciado').text(listaPreguntas[numeroPregunta][1]);
                 $('#respuesta').text(listaPreguntas[numeroPregunta][6]);
                 $('#r1').text(listaPreguntas[numeroPregunta][2]);
@@ -145,7 +145,7 @@ $preguntaActual = rand(0, $numPreguntas - 1);
     //La función ejecuta rellenaDatos, estableciendo un único click para que no sea redundante.
 
     function sigue() {
-        
+
         rellenaDatos();
 
         //Cuando se hace click sobre cualquiera de los botones;
@@ -154,37 +154,37 @@ $preguntaActual = rand(0, $numPreguntas - 1);
 
             var valorDelBoton = $(this).attr("value");  //This es el último evento de click. Lee el valor del atributo "value".
             var valorDeRespuesta = $('#respuesta').text(); //Leemos el párrafo respuesta y obtenemos su valor.
-            
-            
-            
+
+
+
             if (contador <= 10 && vidas > 0) {
                 if (valorDelBoton == valorDeRespuesta) { //En caso de que ambos valores sean iguales, suma uno a correctas y actualiza el texto.
-                    correctas = correctas + 1;
+                    correctas++;
                     $('#correctas').text(correctas);
                     colorBoton(valorDeRespuesta);
                     clearInterval(id);  //Limpia la barra de progreso.
-                    setTimeout(function() { //Delay.
-                          rellenaDatos(); //Se ejecuta de nuevo la función "rellenaDatos" de manera limpia y efectiva.
-                          restauraColor();
-                          move();
-                     }, "1000");
- 
+                    setTimeout(function () { //Delay.
+                        rellenaDatos(); //Se ejecuta de nuevo la función "rellenaDatos" de manera limpia y efectiva.
+                        restauraColor();
+                        move();
+                    }, "1000");
+
                 } else {
-                    vidas = vidas - 1;
+                    vidas--;
                     $('#lives').text(vidas);
                     colorBoton(valorDeRespuesta);
                     clearInterval(id);  //Limpia la barra de progreso.
-                    setTimeout(function() {
-                          rellenaDatos(); //Se ejecuta de nuevo la función "rellenaDatos" de manera limpia y efectiva.
-                          restauraColor();
-                          move(); //Función de barra de progreso.
-                     }, "1000");
+                    setTimeout(function () {
+                        rellenaDatos(); //Se ejecuta de nuevo la función "rellenaDatos" de manera limpia y efectiva.
+                        restauraColor();
+                        move(); //Función de barra de progreso.
+                    }, "1000");
                 }
             }
-            if(vidas<=0){
-              muestraModal();
+            if (vidas <= 0) {
+                muestraModal();
             }
-            if(contador==10){
+            if (contador == 10) {
                 $('#resCorrectas').text(correctas);
                 muestraModal2();
             }
@@ -193,61 +193,48 @@ $preguntaActual = rand(0, $numPreguntas - 1);
 
     }
     //Colores de botones según la respuesta.
-    function colorBoton(respuesta2){ 
-        var res1=$('#r1').attr("value");
-        var res2=$('#r2').attr("value");
-        var res3=$('#r3').attr("value");
-        var res4=$('#r4').attr("value");
-        
-        if(respuesta2==res1){
-            $('#r1').css('background-color','green');
+    function colorBoton(respuesta2) {
+        var res1 = $('#r1').attr("value");
+        var res2 = $('#r2').attr("value");
+        var res3 = $('#r3').attr("value");
+        var res4 = $('#r4').attr("value");
 
-            $('#r2').css('background-color','red');
+        if (respuesta2 == res1) {
+            $('#r1').css('background-color', 'green').addClass('disabled');
+            $('#r2').css('background-color', 'red').addClass('disabled');
+            $('#r3').css('background-color', 'red').addClass('disabled');
+            $('#r4').css('background-color', 'red').addClass('disabled');
 
-            $('#r3').css('background-color','red');
-
-            $('#r4').css('background-color','red');
+        } else if (respuesta2 == res2) {
+            $('#r1').css('background-color', 'red').addClass('disabled');
+            $('#r2').css('background-color', 'green').addClass('disabled');
+            $('#r3').css('background-color', 'red').addClass('disabled');
+            $('#r4').css('background-color', 'red').addClass('disabled');
             
-        }else if(respuesta2==res2){
-            $('#r1').css('background-color','red');
-
-            $('#r2').css('background-color','green');
-
-            $('#r3').css('background-color','red');
-
-            $('#r4').css('background-color','red');
-        }else if(respuesta2==res3){
-            $('#r1').css('background-color','red');
-
-            $('#r2').css('background-color','red');
-
-            $('#r3').css('background-color','green');
-
-            $('#r4').css('background-color','red');
-        }else if(respuesta2==res4){
-            $('#r1').css('background-color','red');
-
-            $('#r2').css('background-color','red');
-
-            $('#r3').css('background-color','red');
-
-            $('#r4').css('background-color','green');
+        } else if (respuesta2 == res3) {
+            $('#r1').css('background-color', 'red').addClass('disabled');
+            $('#r2').css('background-color', 'red').addClass('disabled');
+            $('#r3').css('background-color', 'green').addClass('disabled');
+            $('#r4').css('background-color', 'red').addClass('disabled');
+            
+        } else if (respuesta2 == res4) {
+            $('#r1').css('background-color', 'red').addClass('disabled');
+            $('#r2').css('background-color', 'red').addClass('disabled');
+            $('#r3').css('background-color', 'red').addClass('disabled');
+            $('#r4').css('background-color', 'green').addClass('disabled');
         }
-        
+
     }
-    
-    function restauraColor(){
-        $('#r1').css('background-color','blue');
 
-        $('#r2').css('background-color','blue');
-
-        $('#r3').css('background-color','blue');
-
-        $('#r4').css('background-color','blue');
+    function restauraColor() {
+        $('#r1').css('background-color', 'blue').removeClass('disabled');
+        $('#r2').css('background-color', 'blue').removeClass('disabled');
+        $('#r3').css('background-color', 'blue').removeClass('disabled');
+        $('#r4').css('background-color', 'blue').removeClass('disabled');
     }
-    
+
     //Se muestra un modal cuando se pierde.
-    
+
     function muestraModal() {
         $('#myModal').modal('show');
 
@@ -259,34 +246,36 @@ $preguntaActual = rand(0, $numPreguntas - 1);
 
     }
     ;
-    
+
     //Barra de progreso
-    
-function move() {
-    var elem = document.getElementById("myBar"); 
-    var width = 1;
-    id = setInterval(frame, 60);
-    function frame() {
-        if (width >= 100) {
-            if(contador <= 10 && vidas > 0){
-            clearInterval(id);
-            rellenaDatos();
-            restauraColor();
-            move();
-            vidas--;
-            $('#lives').text(vidas);
+
+    function move(em) {
+        var elem = document.getElementById("myBar");
+        var width = 1;
+        id = setInterval(frame, 120);
+        function frame(ef) {
+            if (width >= 120) {
+                if (contador <= 10 && vidas > 0) {
+                    clearInterval(id);
+                    vidas--;
+                    rellenaDatos();
+                    restauraColor();
+                    //em.stopImmediatePropagation();
+                    move();
+
+                    $('#lives').text(vidas);
+                }
+
+            } else {
+                if (vidas > 0) {
+                    width++;
+                    elem.style.width = width + '%';
+                } else if (vidas <= 0) {
+                    muestraModal();
+                }
             }
-            
-        } else {
-            if(vidas>0){
-            width++; 
-            elem.style.width = width + '%'; 
-           }else if(vidas<=0){
-               muestraModal();
-           }
         }
+
     }
-    
-}
 
 </script>
