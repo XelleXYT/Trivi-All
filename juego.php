@@ -253,7 +253,7 @@ $preguntaActual = rand(0, $numPreguntas - 1);
 
     }
     ;
-    
+    //Se muestra modal cuando se gana.
     function muestraModal2() {
         $('#myModal2').modal('show');
 
@@ -281,6 +281,8 @@ function move() {
             if(vidas>0){
             width++; 
             elem.style.width = width + '%'; 
+           }else if(vidas<=0){
+               muestraModal();
            }
         }
     }
