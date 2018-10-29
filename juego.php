@@ -105,6 +105,8 @@ $preguntaActual = rand(0, $numPreguntas - 1);
     var vidas =<?php echo $vidas ?>;
 
     var contador = 0;
+    
+    var id;
     //Funciones.
     sigue();
     move(); //Función de barra de progreso.
@@ -160,6 +162,7 @@ $preguntaActual = rand(0, $numPreguntas - 1);
                     correctas = correctas + 1;
                     $('#correctas').text(correctas);
                     colorBoton(valorDeRespuesta);
+                    clearInterval(id);  //Limpia la barra de progreso.
                     setTimeout(function() {
                           rellenaDatos(); //Se ejecuta de nuevo la función "rellenaDatos" de manera limpia y efectiva.
                           restauraColor();
@@ -170,6 +173,7 @@ $preguntaActual = rand(0, $numPreguntas - 1);
                     vidas = vidas - 1;
                     $('#lives').text(vidas);
                     colorBoton(valorDeRespuesta);
+                    clearInterval(id);  //Limpia la barra de progreso.
                     setTimeout(function() {
                           rellenaDatos(); //Se ejecuta de nuevo la función "rellenaDatos" de manera limpia y efectiva.
                           restauraColor();
@@ -257,11 +261,11 @@ $preguntaActual = rand(0, $numPreguntas - 1);
     ;
     
     //Barra de progreso
-
+    
 function move() {
     var elem = document.getElementById("myBar"); 
     var width = 1;
-    var id = setInterval(frame, 60);
+    id = setInterval(frame, 60);
     function frame() {
         if (width >= 100) {
             if(contador <= 10 && vidas > 0){
@@ -269,6 +273,8 @@ function move() {
             rellenaDatos();
             restauraColor();
             move();
+            vidas--;
+            $('#lives').text(vidas);
             }
             
         } else {
