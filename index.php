@@ -16,19 +16,19 @@ if (session_status() == PHP_SESSION_NONE) {
     </head>
     <body style="background-color: #E4EDFF">
         <div class="container" id="principal" style="background-color: #5591FF">
-            <div class="row" style=" background-color: blue; color: white; height: 15vw">
-                <div class="col-12 text-center" style="background-image: url('img/TriviallBanner.png'); background-repeat: no-repeat; background-size: 37vw; background-position:center;">
-                    <h2 class="text-center">Encabezado y logo</h2>
+            <div class="row" style="color: white; height: 15vw">
+                <div class="col-md-12" style="background-image: url('img/TriviallBanner.png'); background-repeat: no-repeat; background-size: 30vw; background-position:center;">
+                    <div style=" float:left; background-image: url('img/Icono2.gif'); background-repeat: no-repeat; background-size: 15vw; background-position:center; height: 15vw; width: 15vw;"></div>
                 </div>
+                
             </div>
             <div class="row" style="">
-                <div class="col-8"></div>
-                <div class="col-2">
+                <div class="col-md-8"></div>
+                <div class="col-md-2">
                     <br/>
                     <button id="buttonRegistro" class="btn btn-primary btn-block" type="submit">Registro</button>
-                    <br/>
                 </div>
-                <div class="col-2" style="">
+                <div class="col-md-2" style="">
                     <br/>
                     <button id="buttonLogin" class="btn btn-primary btn-block" type="submit">Login</button>
                     <button id="buttonProfile" class="btn btn-primary btn-block" type="submit"><?php echo $_SESSION['nombreUsuario'] ?></button>
