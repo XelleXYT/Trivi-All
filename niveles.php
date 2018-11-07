@@ -7,9 +7,9 @@ $_SESSION['tema'] = $_POST['tema'];
 
 <div>
     <p><a class="btn btn-block btn-dark disabled">Selecciona el nivel de dificultad</a></p>
-    <p><a id="b1" class="btn btn-block" style="background-color: #00FF00;" onclick="eligeDiff('1')">Facil</a></p>
-    <p><a id="b2" class="btn btn-block" style="background-color: #AAAA00" onclick="eligeDiff('2')">Intermedio</a></p>
-    <p><a id="b3" class="btn btn-block" style="background-color: #FF0000" onclick="eligeDiff('3')">Dificil</a></p>
+    <p><a id="b1" class="btn btn-block" style="background-color: #43FF43;" onclick="eligeDiff('1')">Facil</a></p>
+    <p><a id="b2" class="btn btn-block" style="background-color: #FFFF43" onclick="eligeDiff('2')">Intermedio</a></p>
+    <p><a id="b3" class="btn btn-block" style="background-color: #FF4343" onclick="eligeDiff('3')">Dificil</a></p>
 
 
 

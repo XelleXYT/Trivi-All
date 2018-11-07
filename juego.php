@@ -29,25 +29,25 @@ for ($i = 0; $i < $numPreguntas; $i++) {
 $preguntaActual = rand(0, $numPreguntas - 1);
 ?>
 
-<div id="myProgress">
-    <div id="myBar"></div>
+<div id="myProgress" style="background-color: lightgray;">
+    <div id="myBar" style="background-color: #62FF62;"></div>
 </div>
 
 <div>
     <p><a id="enunciado" class=""></a></p>
     <p><a id="respuesta" class="" style="display:none;"></a></p> <!--Vamos a guardar en una caja invisible el valor de la respuesta correcta-->
-    <p><a id="r1" class="botonRespuesta btn btn-block btn-primary" value="1"></a></p> <!--Value le va a dar un valor que vamos a utilizar para saber cual es la respuesta correcta-->
-    <p><a id="r2" class="botonRespuesta btn btn-block btn-primary" value="2"></a></p>
-    <p><a id="r3" class="botonRespuesta btn btn-block btn-primary" value="3"></a></p>
-    <p><a id="r4" class="botonRespuesta btn btn-block btn-primary" value="4"></a></p>
+    <p><a id="r1" class="botonRespuesta btn btn-block btn-primary" style="white-space: normal;" value="1"></a></p> <!--Value le va a dar un valor que vamos a utilizar para saber cual es la respuesta correcta-->
+    <p><a id="r2" class="botonRespuesta btn btn-block btn-primary" style="white-space: normal;" value="2"></a></p>
+    <p><a id="r3" class="botonRespuesta btn btn-block btn-primary" style="white-space: normal;" value="3"></a></p>
+    <p><a id="r4" class="botonRespuesta btn btn-block btn-primary" style="white-space: normal;" value="4"></a></p>
 </div>
 
 <div class="row">
     <div class="col-4">
-        <p><a class="btn btn-primary disabled">Vidas <br/><span id="lives">3</span>/3</a></p>
+        <p><a class="btn btn-primary disabled" style="background-color: #43FF43">Vidas <br/><img src="img/corazon.gif" id="vida1" style="width: 25%; margin: 2px;"/><img src="img/corazon.gif" id="vida2" style="width: 25%; margin: 2px;"/><img src="img/corazon.gif" id="vida3" style="width: 25%; margin: 2px;"/></a></p>
     </div>
     <div class="col-4">
-        <p><a id="respuestas" class="btn btn-primary disabled">Correctas <br/> <span id="correctas">0</span>/10</a></p>   
+        <p><a id="respuestas" class="btn btn-primary disabled" style="background-color: #43FF43">Correctas <br/> <span id="correctas">0</span>/10</a></p>   
     </div>
     <div class="col-4">
         <p><a class="btn btn-warning" onclick="volver();">Volver <br/> al Menú</a></p>
@@ -137,7 +137,7 @@ $preguntaActual = rand(0, $numPreguntas - 1);
 
             contador++;
             arrayAuxiliar.push(numeroPregunta);
-           // console.log(arrayAuxiliar);
+            // console.log(arrayAuxiliar);
 
         }
     }
@@ -171,6 +171,17 @@ $preguntaActual = rand(0, $numPreguntas - 1);
 
                 } else {
                     vidas--;
+                    switch (vidas) {
+                        case 2:
+                            $('#vida3').attr('src', 'img/corazonVacio.png');
+                            break;
+                        case 1:
+                            $('#vida2').attr('src', 'img/corazonVacio.png');
+                            break;
+                        case 0:
+                            $('#vida1').attr('src', 'img/corazonVacio.png');
+                            break;
+                    }
                     $('#lives').text(vidas);
                     colorBoton(valorDeRespuesta);
                     clearInterval(id);  //Limpia la barra de progreso.
@@ -201,36 +212,36 @@ $preguntaActual = rand(0, $numPreguntas - 1);
 
         if (respuesta2 == res1) {
             $('#r1').css('background-color', 'green').addClass('disabled');
-            $('#r2').css('background-color', 'red').addClass('disabled');
-            $('#r3').css('background-color', 'red').addClass('disabled');
-            $('#r4').css('background-color', 'red').addClass('disabled');
+            $('#r2').css('background-color', '#FF3030').addClass('disabled');
+            $('#r3').css('background-color', '#FF3030').addClass('disabled');
+            $('#r4').css('background-color', '#FF3030').addClass('disabled');
 
         } else if (respuesta2 == res2) {
-            $('#r1').css('background-color', 'red').addClass('disabled');
+            $('#r1').css('background-color', '#FF3030').addClass('disabled');
             $('#r2').css('background-color', 'green').addClass('disabled');
-            $('#r3').css('background-color', 'red').addClass('disabled');
-            $('#r4').css('background-color', 'red').addClass('disabled');
-            
+            $('#r3').css('background-color', '#FF3030').addClass('disabled');
+            $('#r4').css('background-color', '#FF3030').addClass('disabled');
+
         } else if (respuesta2 == res3) {
-            $('#r1').css('background-color', 'red').addClass('disabled');
-            $('#r2').css('background-color', 'red').addClass('disabled');
+            $('#r1').css('background-color', '#FF3030').addClass('disabled');
+            $('#r2').css('background-color', '#FF3030').addClass('disabled');
             $('#r3').css('background-color', 'green').addClass('disabled');
-            $('#r4').css('background-color', 'red').addClass('disabled');
-            
+            $('#r4').css('background-color', '#FF3030').addClass('disabled');
+
         } else if (respuesta2 == res4) {
-            $('#r1').css('background-color', 'red').addClass('disabled');
-            $('#r2').css('background-color', 'red').addClass('disabled');
-            $('#r3').css('background-color', 'red').addClass('disabled');
+            $('#r1').css('background-color', '#FF3030').addClass('disabled');
+            $('#r2').css('background-color', '#FF3030').addClass('disabled');
+            $('#r3').css('background-color', '#FF3030').addClass('disabled');
             $('#r4').css('background-color', 'green').addClass('disabled');
         }
 
     }
 
     function restauraColor() {
-        $('#r1').css('background-color', 'blue').removeClass('disabled');
-        $('#r2').css('background-color', 'blue').removeClass('disabled');
-        $('#r3').css('background-color', 'blue').removeClass('disabled');
-        $('#r4').css('background-color', 'blue').removeClass('disabled');
+        $('#r1').css('background-color', '#007bff').removeClass('disabled');
+        $('#r2').css('background-color', '#007bff').removeClass('disabled');
+        $('#r3').css('background-color', '#007bff').removeClass('disabled');
+        $('#r4').css('background-color', '#007bff').removeClass('disabled');
     }
 
     //Se muestra un modal cuando se pierde.
@@ -273,7 +284,7 @@ $preguntaActual = rand(0, $numPreguntas - 1);
                     clearInterval(id);
                 }
             }
-            console.log("ancho"+width);
+            console.log("ancho" + width);
         }
 
     }
